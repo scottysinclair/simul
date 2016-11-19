@@ -1,7 +1,5 @@
 package scott.simul.games.prisonersdilemma;
 
-import scott.simul.games.prisonersdilemma.RoundResult.Move;
-
 public class RoundResult {
 
     private final PrisonersDilemmaGame game;
@@ -50,6 +48,11 @@ public class RoundResult {
         return roundNumber;
     }
 
+    public Move getOppenentsMove(Player player) {
+        return player == moveOne.getPlayer() ?
+                moveTwo : moveOne;
+    }
+
     public class Move {
         private final Player player;
         private final Card cardDealt;
@@ -74,6 +77,5 @@ public class RoundResult {
         public RoundResult getRound() {
             return RoundResult.this;
         }
-
     }
 }

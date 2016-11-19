@@ -39,8 +39,12 @@ public class PrisonersDilemmaGame {
 
     public Move getOppenentsLastMove(Player player) {
         RoundResult roundResult = results.get( results.size() - 1 );
-        return player == roundResult.getMoveOne().getPlayer() ?
-                roundResult.getMoveTwo() : roundResult.getMoveOne();
+        return  roundResult.getOppenentsMove(player);
+    }
+
+    public Move getLastMove(Player player) {
+        RoundResult roundResult = results.get( results.size() - 1 );
+        return roundResult.getPlayersMove( player );
     }
 
     public Move getMoveBefore(Move move) {
@@ -54,5 +58,6 @@ public class PrisonersDilemmaGame {
         }
         return results.get( round.getRoundNumber() - 2 );
     }
+
 
 }
