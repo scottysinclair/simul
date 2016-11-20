@@ -11,5 +11,10 @@ public class AlwaysCooperate implements Strategy {
         return Card.COOPERATE;
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
 
 }

@@ -13,6 +13,10 @@ public class AlternateCooperateAndDefect implements Strategy {
         return move == null ? Card.COOPERATE : move.getCard().getOppositeCard();
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 
 
 }

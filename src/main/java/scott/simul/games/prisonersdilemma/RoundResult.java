@@ -1,5 +1,7 @@
 package scott.simul.games.prisonersdilemma;
 
+import java.io.PrintStream;
+
 public class RoundResult {
 
     private final PrisonersDilemmaGame game;
@@ -32,6 +34,28 @@ public class RoundResult {
 
     public int getCostOfMoveTwo() {
         return costOfMoveTwo;
+    }
+
+    public int getBalanceBeforeMoveOne() {
+        RoundResult prev = getPreviousRound();
+        return prev != null ? prev.getBalanceAfterMoveOne() : moveOne.getPlayer().getStartingBalance();
+    }
+
+    public int getBalanceBeforeMoveTwo() {
+        RoundResult prev = getPreviousRound();
+        return prev != null ? prev.getBalanceAfterMoveTwo() : moveTwo.getPlayer().getStartingBalance();
+    }
+
+    public int getBalanceAfterMoveOne() {
+        return getBalanceBeforeMoveOne() + costOfMoveOne;
+    }
+
+    public int getBalanceAfterMoveTwo() {
+        return getBalanceBeforeMoveTwo() + costOfMoveTwo;
+    }
+
+    public RoundResult getPreviousRound() {
+        return game.getRoundBefore(this);
     }
 
     public Move getPlayersMove(Player player) {
@@ -77,5 +101,9 @@ public class RoundResult {
         public RoundResult getRound() {
             return RoundResult.this;
         }
+    }
+
+    public void printResult(PrintStream out) {
+        out.println(moveOne.getPlayer() + " " + moveOne.getCard() + " " + getBalanceAfterMoveOne() + " "+ moveTwo.getPlayer() + " " + moveTwo.getCard() + " " + getBalanceAfterMoveTwo());
     }
 }

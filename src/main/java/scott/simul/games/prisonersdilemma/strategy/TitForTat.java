@@ -10,7 +10,14 @@ public class TitForTat implements Strategy {
     @Override
     public Card dealCard(Player player, PrisonersDilemmaGame game) {
         Move move = game.getOppenentsLastMove(player);
-        return move.getCard();
+        /*
+         * cooperate on first move
+         */
+        return move == null ? Card.COOPERATE : move.getCard();
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 }

@@ -7,5 +7,4 @@ import scott.simul.games.prisonersdilemma.PrisonersDilemmaGame;
 public interface Strategy {
 
     public Card dealCard(Player player, PrisonersDilemmaGame game);
-
 }

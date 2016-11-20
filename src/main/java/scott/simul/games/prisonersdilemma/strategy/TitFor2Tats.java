@@ -10,6 +10,12 @@ public class TitFor2Tats implements Strategy {
     @Override
     public Card dealCard(Player player, PrisonersDilemmaGame game) {
         Move lastMove = game.getOppenentsLastMove(player);
+        if (lastMove == null) {
+            /*
+             * cooperate on first move
+             */
+            return Card.COOPERATE;
+        }
         switch (lastMove.getCard()) {
             case COOPERATE: {
                 return Card.COOPERATE;
@@ -25,6 +31,11 @@ public class TitFor2Tats implements Strategy {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
     }
 
 }

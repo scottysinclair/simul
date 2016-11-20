@@ -11,5 +11,9 @@ public class AlwaysDefect implements Strategy {
         return Card.DEFECT;
     }
 
+    @Override
+    public String toString() {
+        return getClass().getSimpleName();
+    }
 
 }
