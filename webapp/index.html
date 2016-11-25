@@ -1,0 +1,26 @@
+<html>
+<head>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <title></title>
+</head>
+<body>
+  <h1>Games</h1>
+  <ul id="listofgames">
+    <li v-for="game in games">{{game.name}}</li>
+  </ul>
+</body>
+</html>
+
+<script type="text/javascript">
+
+	var app = new Vue({
+	  el: '#listofgames',
+	  data: {
+	    games: [
+	    		{name: "game1"},
+	    		{name: "game2"}
+	    	   ]
+	  }
+	});
+
+  </script>

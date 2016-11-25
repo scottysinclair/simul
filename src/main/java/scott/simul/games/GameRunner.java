@@ -1,5 +1,6 @@
 package scott.simul.games;
 
+import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +15,11 @@ import scott.simul.games.prisonersdilemma.strategy.Strategy;
 import scott.simul.games.prisonersdilemma.strategy.TitFor2Tats;
 import scott.simul.games.prisonersdilemma.strategy.TitForTat;
 
+import static java.util.Arrays.asList;
+
 public class GameRunner {
+
+    private List<Game> games = new LinkedList<>();
 
     public void runGame() {
 
@@ -27,12 +32,22 @@ public class GameRunner {
 
         pairings.forEach(sp -> System.out.println(sp));
 
-        List<Game> games = pairings.stream()
+        games = pairings.stream()
                                     .map(strategyPair -> createGame(strategyPair))
                                     .collect(Collectors.toList());
 
         games.forEach(g -> g.run());
         games.forEach(g -> g.printResults(System.out));
+    }
+
+    public Collection<Class<? extends Game>> getGameTypes() {
+        return asList(PrisonersDilemmaGame.class);
+    }
+
+
+
+    public List<Game> getGames() {
+        return games;
     }
 
 
