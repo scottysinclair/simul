@@ -1,6 +1,8 @@
-target
-*~
+.DS_Store
+node_modules/
+dist/
+npm-debug.log
+test/unit/coverage
 .classpath
-.gitignore
 .project
-.settings/
+.settings/*
