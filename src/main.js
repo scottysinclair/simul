@@ -1,9 +1,32 @@
 import Vue from 'vue'
-import App from './App'
+import Router from 'vue-router'
+import Home from './components/Home.vue'
+import Home2 from './components/Home2.vue'
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  template: '<App/>',
-  components: { App }
+// install router
+Vue.use(Router)
+
+const routes = [
+  { path: '/foo', component: Home },
+  { path: '/bar', component: Home2 }
+]
+
+// routing
+var router = new Router({
+  routes // short for routes: routes
 })
+
+router.beforeEach(function () {
+  window.scrollTo(0, 0)
+})
+
+// router.redirect({
+//  '*': '/home/index.html'
+// })
+
+// 4. Create and mount the root instance.
+// Make sure to inject the router with the router option to make the
+// whole app router-aware.
+new Vue({
+  router
+}).$mount('#app')
