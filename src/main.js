@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import GameListing from './components/GameListing.vue'
 import Report from './components/Report.vue'
 
 Vue.config.debug = true
@@ -8,7 +7,6 @@ Vue.config.debug = true
 Vue.use(Router)
 
 const routes = [
-  { path: '/', component: GameListing },
   { path: '/report/:reportType', component: Report }
 ]
 
@@ -22,7 +20,7 @@ var router = new Router({
 // })
 
 // router.redirect({
-//  '*': '/home/index.html'
+//  '*': '/report/reportTypes'
 // })
 
 // 4. Create and mount the root instance.

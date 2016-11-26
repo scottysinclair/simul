@@ -1,8 +1,22 @@
 <template>
   <div>
-    <h1>Report for {{$route.params.reportType}} </h1>
-    {{state.name}}
-    <a v-on:click="changeName()">change it </a>
+    <h1>{{report.name }}</h1>
+    <table>
+    <thead>
+      <tr>
+        <th v-for="column in report.columns">{{column.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr v-for="row in report.data">
+      <td v-for="item in row">{{item}}</td>
+    </tr>
+    </tbody>
+    </table>
+    <hr/>
+    <ul>
+      <li v-for="subReport in report.subReports"><router-link :to="'/report/' + subReport">{{state.getReport(subReport).name}}</router-link></li>
+    </ul>
   </div>
 </template>
 <script>
@@ -21,12 +35,25 @@ export default {
     changeName: function (event) {
       this.state.name = 'Hello World Report'
     }
+  },
+  computed: {
+    report: function () {
+      return this.state.getReport(this.$route.params.reportType) // eslint-disable-line
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+table,  tr, td, th  {
+  border: 1px solid black;
+}
+td, th {
+  padding: 5px 5px 5px 5px;
+}
+
 h1, h2 {
   font-weight: normal;
 }
