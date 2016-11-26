@@ -1,16 +1,20 @@
 <template>
   <div>
-    <h1>Homepage of Games 2</h1>
+    <h2>Types of games:</h2>
+    <ul>
+     <li v-for="gameType in gameTypes">
+          <router-link v-bind:to="'/report/' + gameType">{{gameType}}</router-link>
+    </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home2',
+  name: 'types-of-games',
   data () {
     return {
-      msg: 'Homepage of Games  2....'
-    }
+      gameTypes: ['Prisoner\'s dilemma', 'chess']}
   }
 }
 </script>
@@ -19,16 +23,6 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 a {

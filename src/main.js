@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home.vue'
-import Home2 from './components/Home2.vue'
+import GameListing from './components/GameListing.vue'
+import Report from './components/Report.vue'
 
+Vue.config.debug = true
 // install router
 Vue.use(Router)
 
 const routes = [
-  { path: '/foo', component: Home },
-  { path: '/bar', component: Home2 }
+  { path: '/', component: GameListing },
+  { path: '/report/:reportType', component: Report }
 ]
 
 // routing
@@ -16,9 +17,9 @@ var router = new Router({
   routes // short for routes: routes
 })
 
-router.beforeEach(function () {
-  window.scrollTo(0, 0)
-})
+// router.beforeEach(function () {
+//  window.scrollTo(0, 0)
+// })
 
 // router.redirect({
 //  '*': '/home/index.html'

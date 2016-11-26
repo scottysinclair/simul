@@ -1,16 +1,14 @@
 <template>
   <div>
-    <h1>Homepage of Games</h1>
+    <h1>Report for {{$route.params.reportType}} </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home',
+  name: 'report',
   data () {
-    return {
-      msg: 'Homepage of Games....'
-    }
+    return {}
   }
 }
 </script>
