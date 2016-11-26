@@ -1,14 +1,26 @@
 <template>
   <div>
     <h1>Report for {{$route.params.reportType}} </h1>
+    {{state.name}}
+    <a v-on:click="changeName()">change it </a>
   </div>
 </template>
-
 <script>
+import store from 'components/store.js'
+console.log('imported store into Report.vue')
+console.log(store)
+
 export default {
   name: 'report',
   data () {
-    return {}
+    return {
+      state: store.state
+    }
+  },
+  methods: {
+    changeName: function (event) {
+      this.state.name = 'Hello World Report'
+    }
   }
 }
 </script>
