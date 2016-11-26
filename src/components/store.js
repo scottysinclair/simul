@@ -9,10 +9,14 @@ export default {
           {
             name: 'Name',
             type: 'string'
+          },
+          {
+            name: 'Last Generated',
+            type: 'string'
           }
         ],
         data: [
-         ['Prisoner\'s Dilemma']
+         ['Prisoner\'s Dilemma Report', '2 mins ago']
         ],
         subReports: [2]
       },
