@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs"
   },
   "dependencies": {
+    "amcharts3": "github:amcharts/amcharts3#838909c",
     "semver": "^5.3.0",
     "vue": "^2.1.0",
     "vue-router": "^2.0.3"

@@ -21,7 +21,7 @@ export default {
         subReports: [2]
       },
       '2': {
-        id: 1,
+        id: 2,
         name: 'TitForTat vs TitFor2Tats',
         columns: [
           {
@@ -63,6 +63,7 @@ export default {
          [7, 'COOPERATE', 'COOPERATE', 0, 1800, 0, 1800],
          [8, 'COOPERATE', 'COOPERATE', 0, 2000, 0, 2000]
         ],
+        parentReport: 1,
         subReports: []
       }
 
