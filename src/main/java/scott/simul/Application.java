@@ -14,20 +14,19 @@ public class Application {
         GameRunner gr = new GameRunner();
         gr.runGame();
 
-        staticFiles.externalLocation("webapp");
+        staticFiles.externalLocation("dist");
         port(8080);
         get("/hello", (req, res) -> "Hello World " + req.queryParams("who"));
 
 
         Gson gson = new Gson();
 
-        get("/appData", (req, res) ->
-            gr.getGameTypes()
-                .stream()
-                .map(c -> c.getSimpleName())
-                .collect(Collectors.toList()),
+        get("/report/:id", (req, res) -> {
+                return gr.getReport( Long.parseLong( req.params(":id") ) );
+            },
             gson::toJson);
 
     }
+
 }
 

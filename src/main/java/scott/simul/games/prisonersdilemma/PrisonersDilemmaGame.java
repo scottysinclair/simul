@@ -6,6 +6,7 @@ import java.util.List;
 
 import scott.simul.games.Game;
 import scott.simul.games.prisonersdilemma.RoundResult.Move;
+import scott.simul.games.prisonersdilemma.strategy.Strategy;
 
 /**
  * A Game of Prisoners Dilemma ends after a certain number of rounds
@@ -102,6 +103,16 @@ public class PrisonersDilemmaGame implements Game {
             return null;
         }
         return results.get( round.getRoundNumber() - 2 );
+    }
+
+    public int getEndBalance(Strategy stratgey) {
+        if (playerA.hasStrategy(stratgey)) {
+            return getLastRound().getBalanceAfterMoveOne();
+        }
+        else if (playerB.hasStrategy(stratgey)) {
+            return getLastRound().getBalanceAfterMoveTwo();
+        }
+        return 0;
     }
 
 

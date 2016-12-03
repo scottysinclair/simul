@@ -25,4 +25,8 @@ public class Player {
         return startingBalance;
     }
 
+    public boolean hasStrategy(Strategy stratgey) {
+        return this.strategy == stratgey;
+    }
+
 }
