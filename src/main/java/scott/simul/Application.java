@@ -15,13 +15,13 @@ public class Application {
         gr.runGame();
 
         staticFiles.externalLocation("dist");
-        port(8080);
+        port(8000);
         get("/hello", (req, res) -> "Hello World " + req.queryParams("who"));
 
 
         Gson gson = new Gson();
 
-        get("/report/:id", (req, res) -> {
+        get("/gamesrv/report/:id", (req, res) -> {
                 return gr.getReport( Long.parseLong( req.params(":id") ) );
             },
             gson::toJson);

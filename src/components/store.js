@@ -1,4 +1,13 @@
 console.log('------------- PROCESSING STORE.JS -----------------------------')
+
+window.fetch('/report/1')
+.then(function (response) {
+  return response.json()
+})
+.then(function (report) {
+  console.log(report)
+})
+
 export default {
   state: {
     reports: {
