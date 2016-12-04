@@ -3,15 +3,21 @@ package scott.simul.reports;
 import java.util.LinkedList;
 import java.util.List;
 
+import scott.simul.charts.amchart.Chart;
+
 public class Report {
 
     private Long id;
 
     private String name;
 
+    private String description;
+
     private final List<Column> columns = new LinkedList<>();
 
     private final List<List<Object>> data = new LinkedList<>();
+
+    private Chart chart;
 
     private final List<Long> subReports = new LinkedList<>();
 
@@ -31,6 +37,14 @@ public class Report {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Long getParentReport() {
@@ -53,4 +67,11 @@ public class Report {
         return subReports;
     }
 
+    public Chart getChart() {
+        return chart;
+    }
+
+    public void setChart(Chart chart) {
+        this.chart = chart;
+    }
 }

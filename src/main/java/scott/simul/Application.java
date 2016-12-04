@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
 
-import scott.simul.games.GameRunner;
+import scott.simul.games.prisonersdilemma.PrisonersDilemmaSimRunner;
 
 public class Application {
 
     public static void main(String args[]) {
-        GameRunner gr = new GameRunner();
+        PrisonersDilemmaSimRunner gr = new PrisonersDilemmaSimRunner();
         gr.runGame();
 
         staticFiles.externalLocation("dist");

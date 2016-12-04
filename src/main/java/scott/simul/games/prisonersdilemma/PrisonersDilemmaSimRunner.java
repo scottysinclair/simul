@@ -1,28 +1,24 @@
-package scott.simul.games;
+package scott.simul.games.prisonersdilemma;
 
-import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import scott.simul.games.prisonersdilemma.Player;
-import scott.simul.games.prisonersdilemma.PrisonersDilemmaGame;
+import scott.simul.games.prisonersdilemma.reports.RootReport;
 import scott.simul.games.prisonersdilemma.strategy.AlternateCooperateAndDefect;
 import scott.simul.games.prisonersdilemma.strategy.AlwaysCooperate;
 import scott.simul.games.prisonersdilemma.strategy.AlwaysDefect;
 import scott.simul.games.prisonersdilemma.strategy.Strategy;
 import scott.simul.games.prisonersdilemma.strategy.TitFor2Tats;
 import scott.simul.games.prisonersdilemma.strategy.TitForTat;
-import scott.simul.reports.Column;
 import scott.simul.reports.Report;
 
-import java.util.Arrays;
+public class PrisonersDilemmaSimRunner {
 
-public class GameRunner {
+    private final List<PrisonersDilemmaGame> games = new LinkedList<>();
 
-    private List<PrisonersDilemmaGame> games = new LinkedList<>();
-    private Strategy strategies[] = {
+    private final Strategy strategies[] = {
             new TitForTat(),
             new TitFor2Tats(),
             new AlwaysCooperate(),
@@ -30,15 +26,18 @@ public class GameRunner {
             new AlternateCooperateAndDefect()
     };
 
-    public void runGame() {
+    public Strategy[] getStrategies() {
+        return strategies;
+    }
 
+    public void runGame() {
         List<StrategyPairing> pairings = calculateStrategyPairings(strategies);
 
         pairings.forEach(sp -> System.out.println(sp));
 
-        games = pairings.stream()
-                                    .map(strategyPair -> createGame(strategyPair))
-                                    .collect(Collectors.toList());
+        games.addAll(  pairings.stream()
+                        .map(strategyPair -> createGame(strategyPair))
+                        .collect(Collectors.toList())  );
 
         games.forEach(g -> g.run());
         games.forEach(g -> g.printResults(System.out));
@@ -46,25 +45,9 @@ public class GameRunner {
 
     public Report getReport(Long reportId) {
       if (reportId == 1) {
-          return getRootReport();
+          return new RootReport(this);
       }
       return null;
-    }
-
-    public Report getRootReport() {
-        Report root = new Report();
-        root.setId(1L);
-        root.setName("Prisoner's Dilemma Report");
-        root.getColumns().add(new Column("Stratgey", "string"));
-        root.getColumns().add(new Column("Total score", "number"));
-
-        Arrays.stream(strategies).forEach(stratgey -> {
-            int totalScore = games.stream()
-                .mapToInt(game -> game.getEndBalance(stratgey))
-                .sum();
-            root.getData().add(Arrays.asList(stratgey.getClass().getSimpleName(), totalScore));
-        });
-        return root;
     }
 
     public List<PrisonersDilemmaGame> getGames() {

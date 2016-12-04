@@ -6,6 +6,7 @@ const store = {
       '1': {
         id: 1,
         name: 'Placeholder',
+        description: '',
         columns: [
           {
             name: 'Name',

@@ -7,6 +7,7 @@
     </router-link>
     </div>
     <br/>
+    <p>{{report.description}}</p>
     <table>
     <thead>
       <tr>
