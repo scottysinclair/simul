@@ -2,10 +2,40 @@ package scott.simul.charts.amchart;
 
 public class CategoryAxis {
 
+    private String gridPosition;
+    private Double gridAlpha;
+    private String tickPosition;
+    private Integer tickLength;
+
     private String minPeriod;
-    private boolean parseDates;
-    private double minorGridAlpha;
-    private boolean minorGridEnabled;
+    private Boolean parseDates;
+    private Double minorGridAlpha;
+    private Boolean minorGridEnabled;
+
+    public String getGridPosition() {
+        return gridPosition;
+    }
+    public void setGridPosition(String gridPosition) {
+        this.gridPosition = gridPosition;
+    }
+    public double getGridAlpha() {
+        return gridAlpha;
+    }
+    public void setGridAlpha(double gridAlpha) {
+        this.gridAlpha = gridAlpha;
+    }
+    public String getTickPosition() {
+        return tickPosition;
+    }
+    public void setTickPosition(String tickPosition) {
+        this.tickPosition = tickPosition;
+    }
+    public int getTickLength() {
+        return tickLength;
+    }
+    public void setTickLength(int tickLength) {
+        this.tickLength = tickLength;
+    }
     public String getMinPeriod() {
         return minPeriod;
     }

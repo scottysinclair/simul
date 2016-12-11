@@ -32,12 +32,12 @@ public class Chart {
 
     private Type type;
     private Theme theme;
-    private int marginTop;
-    private int marginRight;
+    private Integer marginTop;
+    private Integer marginRight;
     private final List<Map<String,Object>> dataProvider = new LinkedList<>();
     private final List<ValueAxes> valueAxes = new LinkedList<ValueAxes>();
     private final List<Graph> graphs = new LinkedList<>();
-    private final Scrollbar chartScrollbar = new Scrollbar();
+    private Scrollbar chartScrollbar;
     private final Cursor chartCursor = new Cursor();
     private String dataDateFormat;
     private String categoryField;

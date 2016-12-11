@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import scott.simul.charts.amchart.Chart;
-import scott.simul.charts.amchart.defaults.DefaultLineChart;
+import scott.simul.charts.amchart.defaults.DefaultBarChart;
 import scott.simul.games.prisonersdilemma.PrisonersDilemmaSimRunner;
 import scott.simul.reports.Column;
 import scott.simul.reports.Report;
@@ -32,22 +32,21 @@ public class RootReport extends Report {
             sort(getData(), (row1, row2) ->  {
                 return getScore(row2) - getScore(row1) ;
             });
-
-            //setChart(mkChart());
     }
 
     public Chart makeChart() {
-        Chart lineChart = new DefaultLineChart();
-        addData(lineChart,  "1950", -0.307);
-        addData(lineChart, "1951", -0.168);
-        addData(lineChart, "1952", 2.073);
-        addData(lineChart, "1953", -0.027);
-        return lineChart;
+        DefaultBarChart barChart = new DefaultBarChart();
+        for (List<Object> row: getData()) {
+            addData(barChart, "strategy", row.get(0), row.get(1));
+        }
+        barChart.setCategoryField("strategy");
+        barChart.getFirstGraph().setValueField("value");
+        return barChart;
     }
 
-    private void addData(Chart chart, String year, double value) {
+    private void addData(Chart chart, String categoryName, Object category, Object value) {
         Map<String,Object> data = new HashMap<>();
-        data.put("year", year);
+        data.put(categoryName, category);
         data.put("value", value);
         chart.getDataProvider().add(data);
     }

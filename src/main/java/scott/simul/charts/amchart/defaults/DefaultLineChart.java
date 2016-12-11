@@ -4,7 +4,7 @@ import scott.simul.charts.amchart.Bullet;
 import scott.simul.charts.amchart.CategoryAxis;
 import scott.simul.charts.amchart.Chart;
 import scott.simul.charts.amchart.Export;
-import scott.simul.charts.amchart.Graph;
+import scott.simul.charts.amchart.LineGraph;
 import scott.simul.charts.amchart.LineType;
 import scott.simul.charts.amchart.Position;
 import scott.simul.charts.amchart.ValueAxes;
@@ -19,16 +19,16 @@ public class DefaultLineChart extends Chart {
         getValueAxes().add(new ValueAxes());
         getValueAxes().get(0).setAxisAlpha(0);
         getValueAxes().get(0).setPosition(Position.LEFT);
-        getGraphs().add(new Graph());
-        getGraphs().get(0).setId("g1");
-        getGraphs().get(0).setBallonText("[[category]]<br><b><span style=\'font-size:14px;\'>[[value]]</span></b>");
-        getGraphs().get(0).setBullet(Bullet.ROUND);
-        getGraphs().get(0).setBulletSize(8);
-        getGraphs().get(0).setLineColor("#d1655d");
-        getGraphs().get(0).setLineThickness(2);
-        getGraphs().get(0).setNegativeLineColor("#637bb6");
-        getGraphs().get(0).setType(LineType.SMOOTHED);
-        getGraphs().get(0).setValueField("value");
+        getGraphs().add(new LineGraph());
+        getFirstGraph().setId("g1");
+        getFirstGraph().setBalloonText("[[category]]<br><b><span style=\'font-size:14px;\'>[[value]]</span></b>");
+        getFirstGraph().setBullet(Bullet.ROUND);
+        getFirstGraph().setBulletSize(8);
+        getFirstGraph().setLineColor("#d1655d");
+        getFirstGraph().setLineThickness(2);
+        getFirstGraph().setNegativeLineColor("#637bb6");
+        getFirstGraph().setType(LineType.SMOOTHED);
+        getFirstGraph().setValueField("value");
         getChartScrollbar().setGraph("g1");
         getChartScrollbar().setGridAlpha(0);
         getChartScrollbar().setColor("#888888");
@@ -58,6 +58,10 @@ public class DefaultLineChart extends Chart {
         getCategoryAxis().setMinorGridEnabled(true);
         setExport(new Export());
         getExport().setEnabled(true);
+    }
+
+    public LineGraph getFirstGraph() {
+        return (LineGraph)getGraphs().get(0);
     }
 
 }

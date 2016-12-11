@@ -1,12 +1,31 @@
 package scott.simul.charts.amchart;
 
 public class Cursor {
+
+    private Boolean categoryBalloonEnabled;
+    private Boolean zoomable;
+
     private String categoryBalloonDateFormat;
-    private int cursorAlpha;
-    private boolean valueLineEnabled;
-    private boolean valueLineBalloonEnabled;
-    private double valueLineAlpha;
-    private boolean fullWidth;
+    private Integer cursorAlpha;
+    private Boolean valueLineEnabled;
+    private Boolean valueLineBalloonEnabled;
+    private Double valueLineAlpha;
+    private Boolean fullWidth;
+
+
+    public boolean isCategoryBalloonEnabled() {
+        return categoryBalloonEnabled;
+    }
+    public void setCategoryBalloonEnabled(boolean categoryBallonEnabled) {
+        this.categoryBalloonEnabled = categoryBallonEnabled;
+    }
+
+    public boolean isZoomable() {
+        return zoomable;
+    }
+    public void setZoomable(boolean zoomable) {
+        this.zoomable = zoomable;
+    }
     public String getCategoryBalloonDateFormat() {
         return categoryBalloonDateFormat;
     }

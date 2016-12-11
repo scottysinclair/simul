@@ -14,6 +14,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import scott.simul.charts.amchart.BarGraph;
 import scott.simul.charts.amchart.Bullet;
 import scott.simul.charts.amchart.Chart;
 import scott.simul.charts.amchart.LineType;
@@ -61,6 +62,7 @@ public class Application {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         registerDefaultEnumTypeAdapter(gsonBuilder, Chart.Type.class);
+        registerDefaultEnumTypeAdapter(gsonBuilder, BarGraph.Type.class);
         registerDefaultEnumTypeAdapter(gsonBuilder, Chart.Theme.class);
         registerDefaultEnumTypeAdapter(gsonBuilder, Bullet.class);
         registerDefaultEnumTypeAdapter(gsonBuilder, LineType.class);
@@ -82,7 +84,7 @@ public class Application {
         get("/gamesrv/chart/:id", (req, res) -> {
             try {
                 Chart chart =  gr.getChart( Long.parseLong( req.params(":id") ) );
-                write(gson.toJson(chart));
+//                write(gson.toJson(chart));
                 return chart;
             }
             catch(RuntimeException x) {
@@ -94,16 +96,15 @@ public class Application {
 
     }
 
-    private static void write(String data) {
-        data = data.replaceAll("},", "},\n").replaceAll(",", ",\n");
-        try ( Writer out = new FileWriter(new File("generated.txt")) ) {
-            out.write(data);
-            out.flush();
-        }
-        catch(Exception x) {
-            x.printStackTrace();
-        }
-    }
+//	private static void write(String data) {
+//		data = data.replaceAll("},", "},\n").replaceAll(",", ",\n");
+//		try (Writer out = new FileWriter(new File("generated.txt"))) {
+//			out.write(data);
+//			out.flush();
+//		} catch (Exception x) {
+//			x.printStackTrace();
+//		}
+//	}
 
 }
 
