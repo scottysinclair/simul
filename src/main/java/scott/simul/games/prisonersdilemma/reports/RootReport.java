@@ -33,23 +33,23 @@ public class RootReport extends Report {
                 return getScore(row2) - getScore(row1) ;
             });
 
-            setChart(mkChart());
+            //setChart(mkChart());
     }
 
-    private Chart mkChart() {
+    public Chart makeChart() {
         Chart lineChart = new DefaultLineChart();
-        addData(lineChart, 0, "1950", -0.307);
-        addData(lineChart, 0, "1951", -0.168);
-        addData(lineChart, 0, "1952", -0.073);
-        addData(lineChart, 0, "1953", -0.027);
+        addData(lineChart,  "1950", -0.307);
+        addData(lineChart, "1951", -0.168);
+        addData(lineChart, "1952", 2.073);
+        addData(lineChart, "1953", -0.027);
         return lineChart;
     }
 
-    private void addData(Chart chart, int row, String year, double value) {
+    private void addData(Chart chart, String year, double value) {
         Map<String,Object> data = new HashMap<>();
         data.put("year", year);
         data.put("value", value);
-        chart.getDataProvider().get(row).putAll( data );
+        chart.getDataProvider().add(data);
     }
 
     private static int getScore(List<Object> row) {

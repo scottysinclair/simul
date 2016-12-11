@@ -34,8 +34,8 @@ public class Chart {
     private Theme theme;
     private int marginTop;
     private int marginRight;
-    private List<Map<String,Object>> dataProvider = new LinkedList<>();
-    private ValueAxes valueAxes;
+    private final List<Map<String,Object>> dataProvider = new LinkedList<>();
+    private final List<ValueAxes> valueAxes = new LinkedList<ValueAxes>();
     private final List<Graph> graphs = new LinkedList<>();
     private final Scrollbar chartScrollbar = new Scrollbar();
     private final Cursor chartCursor = new Cursor();
@@ -71,14 +71,8 @@ public class Chart {
     public List<Map<String, Object>> getDataProvider() {
         return dataProvider;
     }
-    public void setDataProvider(List<Map<String, Object>> dataProvider) {
-        this.dataProvider = dataProvider;
-    }
-    public ValueAxes getValueAxes() {
+    public List<ValueAxes> getValueAxes() {
         return valueAxes;
-    }
-    public void setValueAxes(ValueAxes valueAxes) {
-        this.valueAxes = valueAxes;
     }
     public List<Graph> getGraphs() {
         return graphs;

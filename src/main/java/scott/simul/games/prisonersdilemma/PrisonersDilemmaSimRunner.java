@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import scott.simul.charts.amchart.Chart;
 import scott.simul.games.prisonersdilemma.reports.RootReport;
 import scott.simul.games.prisonersdilemma.strategy.AlternateCooperateAndDefect;
 import scott.simul.games.prisonersdilemma.strategy.AlwaysCooperate;
@@ -49,6 +50,14 @@ public class PrisonersDilemmaSimRunner {
       }
       return null;
     }
+
+    public Chart getChart(Long reportId) {
+        if (reportId == 1) {
+            RootReport rr = new RootReport(this);
+            return rr.makeChart();
+        }
+        return null;
+      }
 
     public List<PrisonersDilemmaGame> getGames() {
         return games;

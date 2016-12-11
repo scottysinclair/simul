@@ -41,7 +41,8 @@ export default {
   name: 'report',
   data () {
     return {
-      state: store.state
+      state: store.state,
+      chart: null
     }
   },
   methods: {
@@ -53,79 +54,35 @@ export default {
     report: function () {
       return this.state.getReport(this.$route.params.reportType) // eslint-disable-line
     }
-  }
-}
 
-/* eslint-disable no-unused-vars */
-var chart = window.AmCharts.makeChart('chartdiv', {
-  'type': 'serial',
-  'theme': 'light',
-  'marginTop': 0,
-  'marginRight': 80,
-  'dataProvider': [{
-    'year': '1950',
-    'value': -0.307
-  }, {
-    'year': '1951',
-    'value': -0.168
-  }, {
-    'year': '1952',
-    'value': -0.073
-  }, {
-    'year': '1953',
-    'value': -0.027
-  }],
-  'valueAxes': [{
-    'axisAlpha': 0,
-    'position': 'left'
-  }],
-  'graphs': [{
-    'id': 'g1',
-    'balloonText': '[[category]]<br><b><span style=\'font-size:14px;\'>[[value]]</span></b>',
-    'bullet': 'round',
-    'bulletSize': 8,
-    'lineColor': '#d1655d',
-    'lineThickness': 2,
-    'negativeLineColor': '#637bb6',
-    'type': 'smoothedLine',
-    'valueField': 'value'
-  }],
-  'chartScrollbar': {
-    'graph': 'g1',
-    'gridAlpha': 0,
-    'color': '#888888',
-    'scrollbarHeight': 55,
-    'backgroundAlpha': 0,
-    'selectedBackgroundAlpha': 0.1,
-    'selectedBackgroundColor': '#888888',
-    'graphFillAlpha': 0,
-    'autoGridCount': true,
-    'selectedGraphFillAlpha': 0,
-    'graphLineAlpha': 0.2,
-    'graphLineColor': '#c2c2c2',
-    'selectedGraphLineColor': '#888888',
-    'selectedGraphLineAlpha': 1
   },
-  'chartCursor': {
-    'categoryBalloonDateFormat': 'YYYY',
-    'cursorAlpha': 0,
-    'valueLineEnabled': true,
-    'valueLineBalloonEnabled': true,
-    'valueLineAlpha': 0.5,
-    'fullWidth': true
-  },
-  'dataDateFormat': 'YYYY',
-  'categoryField': 'year',
-  'categoryAxis': {
-    'minPeriod': 'YYYY',
-    'parseDates': true,
-    'minorGridAlpha': 0.1,
-    'minorGridEnabled': true
-  },
-  'export': {
-    'enabled': true
+  beforeUpdate: function () {
+    console.log('before update')
+    console.log('BF creating chart???')
+    const that = this
+    if (this.report.chart !== null) {
+      window.fetch('/gamesrv/chart/' + this.$route.params.reportType)
+      .then(function (response) {
+        return response.json()
+      })
+      .then(function (chart) {
+        console.log(chart)
+        that.chart = window.AmCharts.makeChart('chartdiv', chart)
+      })
+    }
   }
-})
+/*  watch: {
+    $route: function (route) {
+      if (this.chart !== null) {
+        this.chart.clear()
+      }
+      console.log('creating chart???')
+      if (this.report.chart !== null) {
+        this.chart = window.AmCharts.makeChart('chartdiv', this.report.chart)
+      }
+    }
+  } */
+}
 
 </script>
 

@@ -16,9 +16,9 @@ public class DefaultLineChart extends Chart {
         setTheme(Theme.LIGHT);
         setMarginTop(0);
         setMarginRight(80);
-        setValueAxes(new ValueAxes());
-        getValueAxes().setAxisAlpha(0);
-        getValueAxes().setPosition(Position.LEFT);
+        getValueAxes().add(new ValueAxes());
+        getValueAxes().get(0).setAxisAlpha(0);
+        getValueAxes().get(0).setPosition(Position.LEFT);
         getGraphs().add(new Graph());
         getGraphs().get(0).setId("g1");
         getGraphs().get(0).setBallonText("[[category]]<br><b><span style=\'font-size:14px;\'>[[value]]</span></b>");
@@ -39,7 +39,7 @@ public class DefaultLineChart extends Chart {
         getChartScrollbar().setGraphFillAlpha(0);
         getChartScrollbar().setAutoGridCount(true);
         getChartScrollbar().setSelectedGraphFillAlpha(0);
-        getChartScrollbar().setGraphLineAlpha(0.3);
+        getChartScrollbar().setGraphLineAlpha(0.2);
         getChartScrollbar().setGraphLineColor("#c2c2c2");
         getChartScrollbar().setSelectedGraphLineColor("#888888");
         getChartScrollbar().setSelectedGraphLineAlpha(1);
